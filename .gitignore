@@ -40,6 +40,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+config/jupyter.env
 
 # Jupyter Notebook
 .ipynb_checkpoints
