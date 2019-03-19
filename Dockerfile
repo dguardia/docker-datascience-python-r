@@ -22,6 +22,10 @@ RUN odbcinst -q -d -i -f /etc/odbcinst.ini
 # Install X Virtual Framebuffer
 RUN apt-get install -y xvfb
 
+RUN mkdir -p /opt/software/setup/R
+COPY ./config/install_packages.R /opt/software/setup/R
+RUN Rscript /opt/software/setup/R/install_packages.R
+
 USER $NB_UID
 
 RUN pip install --upgrade pip \
@@ -76,6 +80,8 @@ RUN conda install --quiet --yes -c\
     'scikit-image' \
     'statsmodels' \
     'sympy' \
+    'r' \
+    'r-essentials' \
     'xlrd'  && \
     conda remove --quiet --yes --force qt pyqt && \
     conda build purge-all && \
